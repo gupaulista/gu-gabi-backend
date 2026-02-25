@@ -8,7 +8,11 @@ import { errorHandler } from './middlewares/errorHandler';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+}));
 app.use(helmet());
 app.use(morgan('dev'));
 
