@@ -65,7 +65,7 @@ export const ConfigController = {
     /* ── Delete Person ── */
     async deletePerson(req: Request, res: Response) {
         const userId = (req as any).userId;
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         const person = await prisma.person.findFirst({ where: { id, userId } });
         if (!person) return res.status(404).json({ message: 'Pessoa não encontrada' });
@@ -77,7 +77,7 @@ export const ConfigController = {
     /* ── Delete Category ── */
     async deleteCategory(req: Request, res: Response) {
         const userId = (req as any).userId;
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         const category = await prisma.category.findFirst({ where: { id, userId } });
         if (!category) return res.status(404).json({ message: 'Categoria não encontrada' });
@@ -89,7 +89,7 @@ export const ConfigController = {
     /* ── Delete Transaction ── */
     async deleteTransaction(req: Request, res: Response) {
         const userId = (req as any).userId;
-        const { id } = req.params;
+        const id = req.params.id as string;
 
         const tx = await prisma.transaction.findFirst({
             where: { id, person: { userId } },
